@@ -40,7 +40,7 @@ public class GeometryLoader {
 	
 	public GeometryLoader(XmlNode geometryNode, List<VertexSkinData> vertexWeights) {
 		this.vertexWeights = vertexWeights;
-		this.meshData = geometryNode.getChild("geometry").getChild("mesh");
+		this.meshData = geometryNode.getChild("mesh");
 	}
 	
 	public MeshData extractModelData(){

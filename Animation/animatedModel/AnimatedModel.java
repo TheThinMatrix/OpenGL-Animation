@@ -124,7 +124,8 @@ public class AnimatedModel {
 	 *         animation pose.
 	 */
 	public Matrix4f[] getJointTransforms() {
-		Matrix4f[] jointMatrices = new Matrix4f[jointCount];
+		Matrix4f[] jointMatrices = new Matrix4f[jointCount+1];
+		System.out.println("AnimatedModel jointCount" +jointCount);
 		addJointsToArray(rootJoint, jointMatrices);
 		return jointMatrices;
 	}
@@ -141,6 +142,7 @@ public class AnimatedModel {
 	 *            - the array of joint transforms that is being filled.
 	 */
 	private void addJointsToArray(Joint headJoint, Matrix4f[] jointMatrices) {
+		System.out.println("AnimatedModel headJoint " +headJoint.children.size());
 		jointMatrices[headJoint.index] = headJoint.getAnimatedTransform();
 		for (Joint childJoint : headJoint.children) {
 			addJointsToArray(childJoint, jointMatrices);

@@ -19,6 +19,7 @@ public class AnimationLoader {
 	private XmlNode animationData;
 	private XmlNode jointHierarchy;
 	
+	
 	public AnimationLoader(XmlNode animationData, XmlNode jointHierarchy){
 		this.animationData = animationData;
 		this.jointHierarchy = jointHierarchy;
@@ -95,8 +96,8 @@ public class AnimationLoader {
 	}
 	
 	private String findRootJointName(){
-		XmlNode skeleton = jointHierarchy.getChild("visual_scene").getChildWithAttribute("node", "id", "Armature");
-		return skeleton.getChild("node").getAttribute("id");
+		XmlNode skeleton = jointHierarchy;
+		return skeleton.getAttribute("id");
 	}
 
 

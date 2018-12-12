@@ -6,6 +6,7 @@ import java.util.Map;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
+import animatedModel.AnimationNode;
 import animation.Animation;
 import animation.JointTransform;
 import animation.KeyFrame;
@@ -34,8 +35,8 @@ public class AnimationLoader {
 	 *            animation.
 	 * @return The animation made from the data in the file.
 	 */
-	public static Animation loadAnimation(MyFile colladaFile) {
-		AnimationData animationData = ColladaLoader.loadColladaAnimation(colladaFile);
+	public static Animation loadAnimation(AnimationNode animationNode) {
+		AnimationData animationData = ColladaLoader.loadColladaAnimation(animationNode);
 		KeyFrame[] frames = new KeyFrame[animationData.keyFrames.length];
 		for (int i = 0; i < frames.length; i++) {
 			frames[i] = createKeyFrame(animationData.keyFrames[i]);

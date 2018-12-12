@@ -15,7 +15,10 @@ public class AnimatedModelShader extends ShaderProgram {
 	private static final MyFile VERTEX_SHADER = new MyFile("renderer", "animatedEntityVertex.glsl");
 	private static final MyFile FRAGMENT_SHADER = new MyFile("renderer", "animatedEntityFragment.glsl");
 
+	protected UniformMatrix transformationMatrix = new UniformMatrix("transformationMatrix");
 	protected UniformMatrix projectionViewMatrix = new UniformMatrix("projectionViewMatrix");
+	
+	
 	protected UniformVec3 lightDirection = new UniformVec3("lightDirection");
 	protected UniformMat4Array jointTransforms = new UniformMat4Array("jointTransforms", MAX_JOINTS);
 	private UniformSampler diffuseMap = new UniformSampler("diffuseMap");
@@ -29,7 +32,7 @@ public class AnimatedModelShader extends ShaderProgram {
 	public AnimatedModelShader() {
 		super(VERTEX_SHADER, FRAGMENT_SHADER, "in_position", "in_textureCoords", "in_normal", "in_jointIndices",
 				"in_weights");
-		super.storeAllUniformLocations(projectionViewMatrix, diffuseMap, lightDirection, jointTransforms);
+		super.storeAllUniformLocations(projectionViewMatrix, diffuseMap, lightDirection, jointTransforms,transformationMatrix);
 		connectTextureUnits();
 	}
 

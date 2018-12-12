@@ -2,6 +2,7 @@ package renderEngine;
 
 import org.lwjgl.opengl.GL11;
 
+import animatedModel.AnimatedModel;
 import renderer.AnimatedModelRenderer;
 import scene.Scene;
 import skybox.SkyboxRenderer;
@@ -27,7 +28,10 @@ public class MasterRenderer {
 	 */
 	protected void renderScene(Scene scene) {
 		prepare();
-		entityRenderer.render(scene.getAnimatedModel(), scene.getCamera(), scene.getLightDirection());
+		
+		for(AnimatedModel model : scene.getAnimatedModels() ) {
+		entityRenderer.render(model, scene.getCamera(), scene.getLightDirection());
+		}
 		skyRenderer.render(scene.getCamera());
 	}
 

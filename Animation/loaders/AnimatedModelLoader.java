@@ -2,6 +2,7 @@ package loaders;
 
 import animatedModel.AnimatedModel;
 import animatedModel.Joint;
+import animatedModel.SubModelInfo;
 import colladaLoader.ColladaLoader;
 import dataStructures.AnimatedModelData;
 import dataStructures.JointData;
@@ -23,8 +24,8 @@ public class AnimatedModelLoader {
 	 *            - the file containing the data for the entity.
 	 * @return The animated entity (no animation applied though)
 	 */
-	public static AnimatedModel loadEntity(MyFile modelFile, MyFile textureFile) {
-		AnimatedModelData entityData = ColladaLoader.loadColladaModel(modelFile, GeneralSettings.MAX_WEIGHTS);
+	public static AnimatedModel loadEntity(SubModelInfo subModels, MyFile textureFile) {
+		AnimatedModelData entityData = ColladaLoader.loadColladaModel(subModels, GeneralSettings.MAX_WEIGHTS);
 		Vao model = createVao(entityData.getMeshData());
 		Texture texture = loadTexture(textureFile);
 		SkeletonData skeletonData = entityData.getJointsData();

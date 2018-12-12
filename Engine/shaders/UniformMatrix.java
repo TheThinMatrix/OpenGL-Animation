@@ -15,10 +15,16 @@ public class UniformMatrix extends Uniform{
 	}
 	
 	public void loadMatrix(Matrix4f matrix){
+		try{
 		matrix.store(matrixBuffer);
 		matrixBuffer.flip();
 		GL20.glUniformMatrix4(super.getLocation(), false, matrixBuffer);
-	}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	
+		
+		}
 	
 	
 

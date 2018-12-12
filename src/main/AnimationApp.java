@@ -2,6 +2,7 @@ package main;
 
 import org.lwjgl.opengl.Display;
 
+import animatedModel.AnimatedModel;
 import renderEngine.RenderEngine;
 import scene.Scene;
 
@@ -23,7 +24,9 @@ public class AnimationApp {
 
 		while (!Display.isCloseRequested()) {
 			scene.getCamera().move();
-			scene.getAnimatedModel().update();
+			for(AnimatedModel model :scene.getAnimatedModels()) {
+				model.update();
+			}
 			engine.renderScene(scene);
 			engine.update();
 		}
