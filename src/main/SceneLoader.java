@@ -25,7 +25,7 @@ public class SceneLoader {
 		ICamera camera = new Camera();
 
 		AnimatedSubModel subModel = SubModelInfoLoader.loadSubModels(new MyFile(resFolder, GeneralSettings.MODEL_FILE),
-				new MyFile(resFolder, GeneralSettings.DIFFUSE_FILE));
+				GeneralSettings.texturefiles());
 	/*
 		AnimatedModel entity = AnimatedModelLoader.loadEntity(new MyFile(resFolder, GeneralSettings.MODEL_FILE),
 				new MyFile(resFolder, GeneralSettings.DIFFUSE_FILE));

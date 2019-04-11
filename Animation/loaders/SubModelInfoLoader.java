@@ -23,7 +23,7 @@ public class SubModelInfoLoader {
 	
 	private static List<SubModelInfo> subModelInfo = new ArrayList<SubModelInfo>();
 
-	public static AnimatedSubModel loadSubModels(MyFile collada,MyFile texturefile) {
+	public static AnimatedSubModel loadSubModels(MyFile collada,List<MyFile> textures) {
 		
 		XmlNode node = XmlParser.loadXmlFile(collada);
 	/*
@@ -32,7 +32,7 @@ public class SubModelInfoLoader {
 		Animation animation = AnimationLoader.loadAnimation(new MyFile(resFolder, GeneralSettings.ANIM_FILE));
 		*/
 		
-		List<AnimatedModel> animatedModels = getAnimatedModels(node,texturefile);
+		List<AnimatedModel> animatedModels = getAnimatedModels(node,textures);
 		
 		
 		//each animated model has its animation
@@ -43,7 +43,7 @@ public class SubModelInfoLoader {
 	}
 	
 	
-	private static List<AnimatedModel> getAnimatedModels(XmlNode node,MyFile texture){
+	private static List<AnimatedModel> getAnimatedModels(XmlNode node,List<MyFile> textures){
 		
 		List<XmlNode> geometryNodes = node.getChild("library_geometries").getChildren("geometry");
 		
@@ -54,14 +54,22 @@ public class SubModelInfoLoader {
 		
 		List<AnimatedModel> animatedModels = new ArrayList<AnimatedModel>();
 		
-		
+		int i=0;
 		for(XmlNode geometryNode : geometryNodes) {
 			
 			XmlNode skinNode = getSkinNodeFromGeometryNode(geometryNode,skinNodes);
+			try {
 			XmlNode skeletonNode =	getSkeletonNodeFromGeometryNode(skinNode,skeletonNodes);
-			
-			animatedModels.add(AnimatedModelLoader.loadEntity(new SubModelInfo(geometryNode,skinNode,skeletonNode),texture));
+			animatedModels.add(AnimatedModelLoader.loadEntity(new SubModelInfo(geometryNode,skinNode,skeletonNode),textures.get(i)));
 			subModelInfo.add(new SubModelInfo(geometryNode,skinNode,skeletonNode));
+			
+			}catch(Exception e) {
+				
+				System.err.println("not have any sklton");
+			
+			}
+			i++;
+	
 		}
 		
 		return animatedModels;
