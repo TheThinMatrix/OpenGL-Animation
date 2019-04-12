@@ -1,5 +1,7 @@
 package scene;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector3f;
 
 import animatedModel.AnimatedModel;
@@ -15,12 +17,12 @@ public class Scene {
 
 	private final ICamera camera;
 
-	private final AnimatedModel animatedModel;
+	private final List<AnimatedModel> animatedModels;
 
 	private Vector3f lightDirection = new Vector3f(0, -1, 0);
 
-	public Scene(AnimatedModel model, ICamera cam) {
-		this.animatedModel = model;
+	public Scene(List<AnimatedModel> models, ICamera cam) {
+		this.animatedModels = models;
 		this.camera = cam;
 	}
 
@@ -31,8 +33,10 @@ public class Scene {
 		return camera;
 	}
 
-	public AnimatedModel getAnimatedModel() {
-		return animatedModel;
+	
+	
+	public List<AnimatedModel> getAnimatedModels() {
+		return animatedModels;
 	}
 
 	/**

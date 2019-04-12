@@ -16,8 +16,11 @@ public class SmoothFloat {
 	public void update(float delta){
 		float offset = target - actual;
 		float change = offset * delta * agility;
+		
 		actual += change;
+		
 	}
+	
 	
 	public void increaseTarget(float dT){
 		this.target += dT;

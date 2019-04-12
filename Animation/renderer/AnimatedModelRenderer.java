@@ -45,6 +45,9 @@ public class AnimatedModelRenderer {
 		entity.getTexture().bindToUnit(0);
 		entity.getModel().bind(0, 1, 2, 3, 4);
 		shader.jointTransforms.loadMatrixArray(entity.getJointTransforms());
+		
+		shader.transformationMatrix.loadMatrix(utils.Maths.createTransformationMatrix(new Vector3f(0,0,0),1.3f));
+		
 		GL11.glDrawElements(GL11.GL_TRIANGLES, entity.getModel().getIndexCount(), GL11.GL_UNSIGNED_INT, 0);
 		entity.getModel().unbind(0, 1, 2, 3, 4);
 		finish();

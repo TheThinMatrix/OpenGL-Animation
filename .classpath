@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Opengl Animation/lib/natives"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="Animation"/>
+	<classpathentry kind="src" path="ColladaParser"/>
+	<classpathentry kind="src" path="Engine"/>
+	<classpathentry kind="src" path="Resources"/>
+	<classpathentry kind="lib" path="lib/jars/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="lib/jars/lwjgl.jar"/>
+	<classpathentry kind="lib" path="lib/jars/PNGDecoder.jar"/>
+	<classpathentry kind="lib" path="lib/jars/slick-util.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

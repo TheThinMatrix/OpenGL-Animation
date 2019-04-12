@@ -19,17 +19,21 @@ public class SkeletonLoader {
 	
 	private int jointCount = 0;
 	
+	private int extraJoint;
+	
 	private static final Matrix4f CORRECTION = new Matrix4f().rotate((float) Math.toRadians(-90), new Vector3f(1, 0, 0));
 
 	public SkeletonLoader(XmlNode visualSceneNode, List<String> boneOrder) {
-		this.armatureData = visualSceneNode.getChild("visual_scene").getChildWithAttribute("node", "id", "Armature");
+		this.armatureData = visualSceneNode;
 		this.boneOrder = boneOrder;
+		this.extraJoint = boneOrder.size();
 	}
 	
 	public SkeletonData extractBoneData(){
-		XmlNode headNode = armatureData.getChild("node");
+		XmlNode headNode = armatureData;
 		JointData headJoint = loadJointData(headNode, true);
-		return new SkeletonData(jointCount, headJoint);
+		System.out.println("SkeletonLoader "+extraJoint);
+		return new SkeletonData(extraJoint, headJoint);
 	}
 	
 	private JointData loadJointData(XmlNode jointNode, boolean isRoot){
@@ -42,7 +46,13 @@ public class SkeletonLoader {
 	
 	private JointData extractMainJointData(XmlNode jointNode, boolean isRoot){
 		String nameId = jointNode.getAttribute("id");
+		//if does not have index that is not diform bone
 		int index = boneOrder.indexOf(nameId);
+		if(index == -1) {
+			extraJoint+=1;
+			index = extraJoint;
+		}
+		
 		String[] matrixData = jointNode.getChild("matrix").getData().split(" ");
 		Matrix4f matrix = new Matrix4f();
 		matrix.load(convertData(matrixData));
